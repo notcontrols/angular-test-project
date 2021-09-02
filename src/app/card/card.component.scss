@@ -1,0 +1,25 @@
+.edit-card {
+  text-decoration: none;
+  .card {
+    width: 250px;
+    height: 150px;
+
+    .card-header{
+      text-align: end;
+      background-color: #1676a7;
+      color: #ffffff;
+    }
+    .card-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      img {
+        width: 50px;
+      }
+      .card-text {
+        font-size: 14px;
+        text-align: end;
+      }
+    }
+  }
+}
