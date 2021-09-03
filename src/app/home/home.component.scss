@@ -1,0 +1,7 @@
+.parent {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  margin: 20px auto;
+  }
