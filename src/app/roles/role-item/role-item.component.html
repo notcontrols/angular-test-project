@@ -1,0 +1,9 @@
+<a class="list-group-item text-decoration-none" [routerLink]="[index]" style="cursor: pointer;">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{ role.role }}</h4>
+    <p class="list-group-item-text">{{ role.desc }}</p>
+    <p class="list-group-item-text">{{ role.phone }}</p>
+    <p class="list-group-item-text">{{ role.email }}</p>
+    <p class="list-group-item-text">{{ role.check ? 'Active' : 'Inactive' }}</p>
+  </div>
+</a>

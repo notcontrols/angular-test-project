@@ -1,0 +1,20 @@
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-6">
+      <button class="btn btn-success" (click)="onCreate()">New Role</button>
+    </div>
+    <div class="col-md-6">
+      <button class="btn btn-danger" (click)="onClear()">Clear</button>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-12">
+      <app-role-item
+        *ngFor="let roleEl of roles; let i = index"
+        [role]="roleEl"
+        [index]="i"
+      ></app-role-item>
+    </div>
+  </div>
+</div>
