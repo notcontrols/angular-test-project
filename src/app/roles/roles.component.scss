@@ -1,0 +1,16 @@
+.table-header {
+  display: none;
+  flex-direction: row;
+  justify-content: space-between;
+  .table-header-col {
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    display: flex;
+    width: 100%;
+    padding: 3px 10px;
+    font-weight: 600;
+    &:nth-last-child(-n+1){
+      border-right: none;
+    }
+  } 
+}

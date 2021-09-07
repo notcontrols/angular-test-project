@@ -12,6 +12,9 @@ import { CardComponent } from './card/card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RolesComponent } from './roles/roles.component';
 import { RoleItemComponent } from './roles/role-item/role-item.component';
+import { FilterAllPipe } from './roles/filter-all.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -25,14 +28,20 @@ import { RoleItemComponent } from './roles/role-item/role-item.component';
     CardComponent,
     RolesComponent,
     RoleItemComponent,
+    FilterAllPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    FilterAllPipe
+  ]
 })
 export class AppModule { }

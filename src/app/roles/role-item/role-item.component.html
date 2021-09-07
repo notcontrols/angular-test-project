@@ -1,9 +1,7 @@
-<a class="list-group-item text-decoration-none" [routerLink]="[index]" style="cursor: pointer;">
-  <div class="pull-left">
-    <h4 class="list-group-item-heading">{{ role.role }}</h4>
-    <p class="list-group-item-text">{{ role.desc }}</p>
-    <p class="list-group-item-text">{{ role.phone }}</p>
-    <p class="list-group-item-text">{{ role.email }}</p>
-    <p class="list-group-item-text">{{ role.check ? 'Active' : 'Inactive' }}</p>
-  </div>
-</a>
+<div class="role-row" [routerLink]="[index]">
+  <div class="role-col"><label class="role-label d-md-none">Role: </label> {{ role.role }}</div>
+  <div class="role-col"><label class="role-label d-md-none">Desc: </label> {{ role.desc }}</div>
+  <div class="role-col"><label class="role-label d-md-none">Phone: </label> {{ role.phone }}</div>
+  <div class="role-col"><label class="role-label d-md-none">Email: </label> {{ role.email }}</div>
+  <div class="role-col"><label class="role-label d-md-none">Status: </label> {{ role.check ? "Active" : "Inactive" }}</div>
+</div>

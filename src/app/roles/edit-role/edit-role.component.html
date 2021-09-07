@@ -1,96 +1,148 @@
 <div class="container p-5">
-  <h2>Role:</h2>
+  <div class="row justify-content-center">
+    <h2 class="col-md-6">Role:</h2>
+  </div>
   <form (ngSubmit)="onSubmit()" [formGroup]="ngForm">
-    <div class="form-group">
-      <label for="role">Role</label>
-      <input
-        class="form-control"
-        type="text"
-        id="role"
-        formControlName="role"
-      />
+    <div class="row justify-content-center">
+      <div class="col-md-6 form-group">
+        <label for="role">Role *</label>
+        <input
+          class="form-control"
+          type="text"
+          id="role"
+          formControlName="role"
+        />
+      </div>
     </div>
-    <div class="form-group">
-      <label for="desc">Description</label>
-      <input
-        class="form-control"
-        type="text"
-        id="desc"
-        formControlName="desc"
-        [attr.disabled]="testFormControl.role.valid ? null : ''"
-      />
+    <div class="row justify-content-center">
+      <div class="col-md-6 form-group">
+        <label for="desc">Description</label>
+        <input
+          class="form-control"
+          type="text"
+          id="desc"
+          formControlName="desc"
+          [attr.disabled]="testFormControl.role.valid ? null : ''"
+          [value]="testFormControl.role.valid ? testFormControl.desc.value : ''"
+        />
+      </div>
     </div>
-    <div class="form-group">
-      <label for="phone">Phone</label>
-      <input
-        class="form-control"
-        type="tel"
-        id="phone"
-        formControlName="phone"
-      />
-    </div>
-    <div
-    *ngIf="testFormControl.phone.invalid && testFormControl.phone.touched"
-    class="alert alert-danger"
-  >
-    <div *ngIf="testFormControl.phone.errors?.pattern">Enter the phone number in the format +375291234567.</div>
-  </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        class="form-control"
-        type="email"
-        id="email"
-        formControlName="email"
-      />
+    <div class="row justify-content-center">
+      <div class="col-md-6 form-group">
+        <label for="phone">Phone</label>
+        <input
+          class="form-control"
+          type="tel"
+          id="phone"
+          formControlName="phone"
+        />
+      </div>
     </div>
     <div
-    *ngIf="testFormControl.email.invalid && (testFormControl.email.touched || submitted)"
-    class="alert alert-danger"
-  >
-  <div *ngIf="testFormControl.email.errors?.required">Email is required.</div>
-    <div *ngIf="testFormControl.email.errors?.email">Email is incorrect.</div>
-  </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        class="form-control"
-        type="password"
-        id="password"
-        formControlName="password"
-      />
-    </div>
-    <div
-      *ngIf="testFormControl.password.invalid && (testFormControl.password.touched || submitted)"
-      class="alert alert-danger"
+      *ngIf="testFormControl.phone.invalid && testFormControl.phone.touched"
+      class="col-md-6 m-auto alert alert-danger"
     >
-      <div *ngIf="testFormControl.password.errors?.required">Password is required.</div>
+      <div *ngIf="testFormControl.phone.errors?.pattern">
+        Enter the phone number in the format +375291234567.
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 form-group">
+        <label for="email">Email *</label>
+        <input
+          class="form-control"
+          type="email"
+          id="email"
+          formControlName="email"
+        />
+      </div>
+    </div>
+    <div
+      *ngIf="
+        testFormControl.email.invalid &&
+        (testFormControl.email.touched || submitted)
+      "
+      class="col-md-6 m-auto alert alert-danger"
+    >
+      <div *ngIf="testFormControl.email.errors?.required">
+        Email is required.
+      </div>
+      <div *ngIf="testFormControl.email.errors?.email">Email is incorrect.</div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 form-group">
+        <label for="password">Password *</label>
+        <input
+          class="form-control"
+          type="password"
+          id="password"
+          formControlName="password"
+        />
+      </div>
+    </div>
+    <div
+      *ngIf="
+        testFormControl.password.invalid &&
+        (testFormControl.password.touched || submitted)
+      "
+      class="col-md-6 m-auto alert alert-danger"
+    >
+      <div *ngIf="testFormControl.password.errors?.required">
+        Password is required.
+      </div>
       <div *ngIf="testFormControl.password.errors?.minlength">
         Password must be at least 8 characters long.
       </div>
     </div>
-    <div class="form-group">
-      <label for="password">Select</label>
-      <select
-        class="form-control"
-        id="select-type"
-        formControlName="selecttype"
-      >
-        <option value="Test">Test</option>
-        <option value="Dev">Dev</option>
-        <option value="Prod">Prod</option>
-      </select>
+    <div class="row justify-content-center">
+      <div class="col-md-6 form-group">
+        <label for="password">Select</label>
+        <select
+          class="form-control"
+          id="select-type"
+          formControlName="selecttype"
+        >
+          <option value="Test">Test</option>
+          <option value="Dev">Dev</option>
+          <option value="Prod">Prod</option>
+        </select>
+      </div>
     </div>
-    <div class="form-check">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="check"
-        formControlName="check"
-      />
-      <label class="form-check-label" for="check"> Active </label>
+    <div class="row justify-content-center">
+      <div class="col-md-6 form-group">
+        <label for="datepicker">Date</label>
+        <input
+          type="text"
+          id="datepicker"
+          placeholder="Datepicker"
+          class="form-control"
+          bsDatepicker
+          [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY' }"
+        />
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary m-2">Submit</button>
-    <button type="button" class="btn btn-outline-secondary m-2" (click)="onCancel()">Cancel</button>
+    <div class="row justify-content-center">
+      <div class="form-check col-md-5 mb-3">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="check"
+          formControlName="check"
+        />
+        <label class="form-check-label" for="check"> Active </label>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-primary m-2">Submit</button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary m-2"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
   </form>
 </div>
