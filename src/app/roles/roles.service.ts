@@ -16,7 +16,6 @@ export class RolesService {
   loadRoles() {
     for (let key of this.keys) {
       this.roles.push(JSON.parse(sessionStorage.getItem(key)));
-      console.log(this.roles);
     }
   }
 
@@ -43,5 +42,19 @@ export class RolesService {
     this.roles[index] = newRole;
     sessionStorage.setItem(`${index}`, JSON.stringify(newRole));
     this.rolesChanged.next(this.roles.slice());
+  }
+
+   sortByField(field:string, sortAscend:boolean) {
+      let sortOrder = 1; 
+  
+      sortAscend ? (sortOrder=-1, sortAscend=!sortAscend) : sortAscend=!sortAscend;
+      
+      this.roles.sort(function (a,b) {
+          let result = (a[field] < b[field]) ? -1 : (a[field] > b[field]) ? 1 : 0;
+          return result * sortOrder;
+      })
+      console.log(this.roles)
+      this.rolesChanged.next(this.roles.slice());
+      return sortAscend;
   }
 }

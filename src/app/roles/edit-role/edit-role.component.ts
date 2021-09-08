@@ -15,13 +15,8 @@ export class EditRoleComponent implements OnInit {
   ngForm: FormGroup;
   id: number;
   editMode = false;
+  bsValue = new Date();
 
-  get password() {
-    return this.ngForm.get('password');
-  }
-  get email() {
-    return this.ngForm.get('email');
-  }
   get testFormControl() {
     return this.ngForm.controls;
   }

@@ -12,6 +12,7 @@ export class RolesComponent implements OnInit, OnDestroy {
   roles: Role[];
   subscription: Subscription;
   public searchString: string;
+  sortAscend:boolean = true;
 
   constructor(
     private router: Router,
@@ -40,5 +41,17 @@ export class RolesComponent implements OnInit, OnDestroy {
 
   onClear() {
     this.rolesService.clearStorage();
+  }
+
+  sort(field) {
+    // let sortOrder = 1; 
+
+    // this.sortAscend ? (sortOrder=-1, this.sortAscend=!this.sortAscend) : this.sortAscend=!this.sortAscend;
+    
+    // this.roles.sort(function (a,b) {
+    //     let result = (a[field] < b[field]) ? -1 : (a[field] > b[field]) ? 1 : 0;
+    //     return result * sortOrder;
+    // })
+    this.sortAscend = this.rolesService.sortByField(field, this.sortAscend);
   }
 }

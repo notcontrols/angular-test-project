@@ -7,18 +7,68 @@
       <button class="btn btn-danger" (click)="onClear()">Clear</button>
     </div>
     <div class="input-group mt-3 mt-md-0 col-md-3">
-      <input type="text" class="form-control" placeholder="Search.." [(ngModel)]="searchString">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search.."
+        [(ngModel)]="searchString"
+      />
     </div>
   </div>
   <br />
   <div class="row">
     <div class="col-md-12">
       <div class="table-header d-md-flex">
-        <div class="table-header-col">Role</div>
-        <div class="table-header-col">Desc</div>
-        <div class="table-header-col">Phone</div>
-        <div class="table-header-col">Email</div>
-        <div class="table-header-col">Status</div>
+        <div class="table-header-col" (click)="sort('role')">
+          Role
+          <i
+            [ngClass]="{
+              'bi bi-arrow-down-up': true,
+              'bi-arrow-down': sortAscend,
+              'bi-arrow-up': !sortAscend
+            }"
+          ></i>
+        </div>
+        <div class="table-header-col" (click)="sort('desc')">
+          Desc
+          <i
+            [ngClass]="{
+              'bi bi-arrow-down-up': true,
+              'bi-arrow-down': sortAscend,
+              'bi-arrow-up': !sortAscend
+            }"
+          ></i>
+        </div>
+        <div class="table-header-col" (click)="sort('phone')">
+          Phone
+          <i
+            [ngClass]="{
+              'bi bi-arrow-down-up': true,
+              'bi-arrow-down': sortAscend,
+              'bi-arrow-up': !sortAscend
+            }"
+          ></i>
+        </div>
+        <div class="table-header-col" (click)="sort('email')">
+          Email
+          <i
+            [ngClass]="{
+              'bi bi-arrow-down-up': true,
+              'bi-arrow-down': sortAscend,
+              'bi-arrow-up': !sortAscend
+            }"
+          ></i>
+        </div>
+        <div class="table-header-col" (click)="sort('check')">
+          Status
+          <i
+            [ngClass]="{
+              'bi bi-arrow-down-up': true,
+              'bi-arrow-down': sortAscend,
+              'bi-arrow-up': !sortAscend
+            }"
+          ></i>
+        </div>
       </div>
       <app-role-item
         *ngFor="let roleEl of roles | filterAll: searchString; let i = index"
