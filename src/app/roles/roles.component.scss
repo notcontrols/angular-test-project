@@ -1,11 +1,25 @@
+.breadcrumb {
+  background-color: transparent;
+}
+.search-clear{
+  margin-left: -40px;
+  z-index: 100;
+  &:focus {
+    box-shadow: none;
+  }
+ }
 .table-header {
   display: none;
   flex-direction: row;
   justify-content: space-between;
+  border-width: 2px 0 1px;
+  border-color: #adb5bd;
+  border-style: solid;
   .table-header-col {
+
     border-right: 1px solid #adb5bd;
-    border-top: 1px solid #adb5bd;
     display: flex;
+    justify-content: space-between;
     width: 100%;
     padding: 3px 10px;
     font-weight: 600;
@@ -13,5 +27,6 @@
     &:nth-last-child(-n+1){
       border-right: none;
     }
-  } 
+  }
+
 }

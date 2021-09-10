@@ -27,6 +27,12 @@ export class RolesService {
     return this.roles[index];
   }
 
+  deleteRole(index: number) {
+    this.roles.splice(index, 1);
+    sessionStorage.removeItem(String(index));
+    this.rolesChanged.next(this.roles.slice());
+  }
+
   addRoles(role: Role) {
     sessionStorage.setItem(`${this.roles.length}`, JSON.stringify(role));
     this.roles.push(role);
@@ -35,26 +41,28 @@ export class RolesService {
 
   clearStorage() {
     sessionStorage.clear();
-    this.roles= [];
+    this.roles = [];
     this.rolesChanged.next(this.roles.slice());
   }
   updateRoles(index: number, newRole: Role) {
     this.roles[index] = newRole;
-    sessionStorage.setItem(`${index}`, JSON.stringify(newRole));
+    sessionStorage.setItem(String(index), JSON.stringify(newRole));
     this.rolesChanged.next(this.roles.slice());
   }
 
-   sortByField(field:string, sortAscend:boolean) {
-      let sortOrder = 1; 
-  
-      sortAscend ? (sortOrder=-1, sortAscend=!sortAscend) : sortAscend=!sortAscend;
-      
-      this.roles.sort(function (a,b) {
-          let result = (a[field] < b[field]) ? -1 : (a[field] > b[field]) ? 1 : 0;
-          return result * sortOrder;
-      })
-      console.log(this.roles)
-      this.rolesChanged.next(this.roles.slice());
-      return sortAscend;
+  sortByField(field: string, sortDirection: string) {
+    let sortOrder = 1;
+
+    sortDirection === 'desc'
+      ? ((sortOrder = -1), (sortDirection = 'asc'))
+      : (sortDirection = 'desc');
+
+    this.roles.sort(function (a, b) {
+      let result = a[field] < b[field] ? -1 : a[field] > b[field] ? 1 : 0;
+
+      return result * sortOrder;
+    });
+    this.rolesChanged.next(this.roles.slice());
+    return sortDirection;
   }
 }

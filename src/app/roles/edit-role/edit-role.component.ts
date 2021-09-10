@@ -16,6 +16,7 @@ export class EditRoleComponent implements OnInit {
   id: number;
   editMode = false;
   bsValue = new Date();
+  statusValue: String = "Inactive"
 
   get testFormControl() {
     return this.ngForm.controls;
@@ -31,7 +32,6 @@ export class EditRoleComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.editMode = params['id'] != null;
-      console.log(`EditMode: ${this.editMode}`);
     });
 
     this.ngForm = new FormGroup({
@@ -47,15 +47,16 @@ export class EditRoleComponent implements OnInit {
         Validators.minLength(8),
       ]),
       selecttype: new FormControl('Test'),
-      check: new FormControl(''),
+      status: new FormControl(''),
     });
     if (this.editMode) {
       const ROLE = this.rolesService.getRole(this.id);
-      this.ngForm.setValue(ROLE);
+      this.ngForm.patchValue(ROLE);
     }
   }
   onSubmit() {
     this.submitted = true;
+    this.ngForm.patchValue({status: this.statusValue});
     if (this.ngForm.valid) {
       console.table(this.ngForm.value);
       if (this.editMode) {
@@ -70,7 +71,9 @@ export class EditRoleComponent implements OnInit {
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
-
+  onStatusChange(e) {
+  this.statusValue = e.target.checked ? 'Active' : 'Inactive'
+}
   // userNameValidator(control: FormControl): Promise<any> | Observable<any> {
   //   const UserList = ['Admin', 'User', 'Superuser'];
 

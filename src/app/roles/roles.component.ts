@@ -12,7 +12,8 @@ export class RolesComponent implements OnInit, OnDestroy {
   roles: Role[];
   subscription: Subscription;
   public searchString: string;
-  sortAscend:boolean = true;
+  sortDirection: string = '';
+  activeField: string = '';
 
   constructor(
     private router: Router,
@@ -28,7 +29,6 @@ export class RolesComponent implements OnInit, OnDestroy {
       }
     );
     this.roles = this.rolesService.getRoles();
-    console.log(this.roles);
   }
 
   ngOnDestroy(): void {
@@ -44,14 +44,13 @@ export class RolesComponent implements OnInit, OnDestroy {
   }
 
   sort(field) {
-    // let sortOrder = 1; 
-
+    this.activeField = field.target.dataset.name;
     // this.sortAscend ? (sortOrder=-1, this.sortAscend=!this.sortAscend) : this.sortAscend=!this.sortAscend;
     
     // this.roles.sort(function (a,b) {
     //     let result = (a[field] < b[field]) ? -1 : (a[field] > b[field]) ? 1 : 0;
     //     return result * sortOrder;
     // })
-    this.sortAscend = this.rolesService.sortByField(field, this.sortAscend);
+    this.sortDirection = this.rolesService.sortByField(field.target.dataset.name, this.sortDirection);
   }
 }

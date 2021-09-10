@@ -1,7 +1,17 @@
-<div class="container my-3">
+<div class="container pb-3">
+  <div class="row">
+    <div class="col-xs-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Roles</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
   <div class="row">
     <div class="col-auto">
-      <button class="btn btn-success" (click)="onCreate()">New Role</button>
+      <button class="btn btn-primary" (click)="onCreate()">New Role</button>
     </div>
     <div class="col-auto">
       <button class="btn btn-danger" (click)="onClear()">Clear</button>
@@ -9,63 +19,72 @@
     <div class="input-group mt-3 mt-md-0 col-md-3">
       <input
         type="text"
-        class="form-control"
+        class="form-control search-input"
         placeholder="Search.."
         [(ngModel)]="searchString"
       />
+      <button
+        class="btn bg-transparent search-clear"
+        (click)="searchString = ''"
+      >
+        <i class="bi bi-x-lg"></i>
+      </button>
     </div>
   </div>
   <br />
   <div class="row">
     <div class="col-md-12">
       <div class="table-header d-md-flex">
-        <div class="table-header-col" (click)="sort('role')">
+        <div class="table-header-col" data-name="role" (click)="sort($event)">
           Role
           <i
             [ngClass]="{
               'bi bi-arrow-down-up': true,
-              'bi-arrow-down': sortAscend,
-              'bi-arrow-up': !sortAscend
+              'bi-arrow-down': sortDirection == 'desc' && activeField == 'role',
+              'bi-arrow-up': sortDirection == 'asc' && activeField == 'role'
             }"
           ></i>
         </div>
-        <div class="table-header-col" (click)="sort('desc')">
+        <div class="table-header-col" data-name="desc" (click)="sort($event)">
           Desc
           <i
             [ngClass]="{
               'bi bi-arrow-down-up': true,
-              'bi-arrow-down': sortAscend,
-              'bi-arrow-up': !sortAscend
+              'bi-arrow-down': sortDirection == 'desc' && activeField == 'desc',
+              'bi-arrow-up': sortDirection == 'asc' && activeField == 'desc'
             }"
           ></i>
         </div>
-        <div class="table-header-col" (click)="sort('phone')">
+        <div class="table-header-col" data-name="phone" (click)="sort($event)">
           Phone
           <i
             [ngClass]="{
               'bi bi-arrow-down-up': true,
-              'bi-arrow-down': sortAscend,
-              'bi-arrow-up': !sortAscend
+              'bi-arrow-down':
+                sortDirection == 'desc' && activeField == 'phone',
+              'bi-arrow-up': sortDirection == 'asc' && activeField == 'phone'
             }"
           ></i>
         </div>
-        <div class="table-header-col" (click)="sort('email')">
+        <div class="table-header-col" data-name="email" (click)="sort($event)">
           Email
           <i
             [ngClass]="{
               'bi bi-arrow-down-up': true,
-              'bi-arrow-down': sortAscend,
-              'bi-arrow-up': !sortAscend
+              'bi-arrow-down':
+                sortDirection == 'desc' && activeField == 'email',
+              'bi-arrow-up': sortDirection == 'asc' && activeField == 'email'
             }"
           ></i>
         </div>
-        <div class="table-header-col" (click)="sort('check')">
+        <div class="table-header-col" data-name="status" (click)="sort($event)">
           Status
           <i
             [ngClass]="{
               'bi bi-arrow-down-up': true,
-              'bi-arrow-down': sortAscend,
-              'bi-arrow-up': !sortAscend
+              'bi-arrow-down':
+                sortDirection == 'desc' && activeField == 'status',
+              'bi-arrow-up': sortDirection == 'asc' && activeField == 'status'
             }"
           ></i>
         </div>
