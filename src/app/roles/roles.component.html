@@ -40,8 +40,8 @@
           <i
             [ngClass]="{
               'bi bi-arrow-down-up': true,
-              'bi-arrow-down': sortDirection == 'desc' && activeField == 'role',
-              'bi-arrow-up': sortDirection == 'asc' && activeField == 'role'
+              'bi-arrow-down': sortDirection == sortOrder.desc && activeField == 'role',
+              'bi-arrow-up': sortDirection == sortOrder.asc && activeField == 'role'
             }"
           ></i>
         </div>
@@ -50,8 +50,8 @@
           <i
             [ngClass]="{
               'bi bi-arrow-down-up': true,
-              'bi-arrow-down': sortDirection == 'desc' && activeField == 'desc',
-              'bi-arrow-up': sortDirection == 'asc' && activeField == 'desc'
+              'bi-arrow-down': sortDirection == sortOrder.desc && activeField == 'desc',
+              'bi-arrow-up': sortDirection == sortOrder.asc && activeField == 'desc'
             }"
           ></i>
         </div>
@@ -61,8 +61,8 @@
             [ngClass]="{
               'bi bi-arrow-down-up': true,
               'bi-arrow-down':
-                sortDirection == 'desc' && activeField == 'phone',
-              'bi-arrow-up': sortDirection == 'asc' && activeField == 'phone'
+                sortDirection == sortOrder.desc && activeField == 'phone',
+              'bi-arrow-up': sortDirection == sortOrder.asc && activeField == 'phone'
             }"
           ></i>
         </div>
@@ -72,8 +72,8 @@
             [ngClass]="{
               'bi bi-arrow-down-up': true,
               'bi-arrow-down':
-                sortDirection == 'desc' && activeField == 'email',
-              'bi-arrow-up': sortDirection == 'asc' && activeField == 'email'
+                sortDirection == sortOrder.desc && activeField == 'email',
+              'bi-arrow-up': sortDirection == sortOrder.asc && activeField == 'email'
             }"
           ></i>
         </div>
@@ -83,8 +83,8 @@
             [ngClass]="{
               'bi bi-arrow-down-up': true,
               'bi-arrow-down':
-                sortDirection == 'desc' && activeField == 'status',
-              'bi-arrow-up': sortDirection == 'asc' && activeField == 'status'
+                sortDirection == sortOrder.desc && activeField == 'status',
+              'bi-arrow-up': sortDirection == sortOrder.asc && activeField == 'status'
             }"
           ></i>
         </div>

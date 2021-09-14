@@ -7,10 +7,18 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RolesComponent } from './roles/roles.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'roles', component: RolesComponent },
-  { path: 'roles/new', component: EditRoleComponent },
-  { path: 'roles/:id', component: EditRoleComponent },
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'roles',
+    children: [
+      { path: '', component: RolesComponent },
+      { path: 'new', component: EditRoleComponent },
+      { path: ':id', component: EditRoleComponent },
+    ],
+  },
   { path: '**', component: NotFoundComponent },
 ];
 

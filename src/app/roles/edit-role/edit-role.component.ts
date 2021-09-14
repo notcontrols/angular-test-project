@@ -1,9 +1,9 @@
-import { RolesService } from './../roles.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+import { RolesService } from './../roles.service';
 @Component({
   selector: 'app-edit-role',
   templateUrl: './edit-role.component.html',
@@ -16,7 +16,8 @@ export class EditRoleComponent implements OnInit {
   id: number;
   editMode = false;
   bsValue = new Date();
-  statusValue: String = "Inactive"
+  statusValue: String = 'Inactive';
+  isCheckedStatus: boolean = false;
 
   get testFormControl() {
     return this.ngForm.controls;
@@ -33,7 +34,6 @@ export class EditRoleComponent implements OnInit {
       this.id = +params['id'];
       this.editMode = params['id'] != null;
     });
-
     this.ngForm = new FormGroup({
       role: new FormControl('', Validators.required),
       desc: new FormControl(''),
@@ -49,14 +49,20 @@ export class EditRoleComponent implements OnInit {
       selecttype: new FormControl('Test'),
       status: new FormControl(''),
     });
+    
     if (this.editMode) {
       const ROLE = this.rolesService.getRole(this.id);
+      if (ROLE.status === 'Active') {
+        this.isCheckedStatus = true;
+      } else {
+        this.isCheckedStatus = false;
+      }
       this.ngForm.patchValue(ROLE);
     }
   }
   onSubmit() {
     this.submitted = true;
-    this.ngForm.patchValue({status: this.statusValue});
+    this.ngForm.patchValue({ status: this.statusValue });
     if (this.ngForm.valid) {
       console.table(this.ngForm.value);
       if (this.editMode) {
@@ -71,9 +77,9 @@ export class EditRoleComponent implements OnInit {
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
-  onStatusChange(e) {
-  this.statusValue = e.target.checked ? 'Active' : 'Inactive'
-}
+  onStatusChange(checkedStatus) {
+    this.statusValue = checkedStatus ? 'Active' : 'Inactive';
+  }
   // userNameValidator(control: FormControl): Promise<any> | Observable<any> {
   //   const UserList = ['Admin', 'User', 'Superuser'];
 

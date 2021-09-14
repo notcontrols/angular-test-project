@@ -1,15 +1,19 @@
-import { RolesService } from './roles.service';
-import { Role } from './role.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+import { RolesService } from './roles.service';
+import { Role } from './role.model';
+import { SortOrder } from './enum/sort-order';
+
 @Component({
+
   templateUrl: './roles.component.html',
   styleUrls: ['./roles.component.scss'],
 })
 export class RolesComponent implements OnInit, OnDestroy {
   roles: Role[];
+  sortOrder = SortOrder;
   subscription: Subscription;
   public searchString: string;
   sortDirection: string = '';

@@ -1,3 +1,12 @@
+// export interface RoleDTO {
+//   role: string;
+//   desc?: string;
+//   phone: number;
+//   email: string;
+//   password: string;
+//   selecttype: string;
+//   status: string;
+// }
 export class Role {
   public role: string;
   public desc?: string;
@@ -7,8 +16,15 @@ export class Role {
   public selecttype: string;
   public status: string;
 
-
-  constructor(role: string, desc: string, phone: number, email: string, password: string, selecttype: string, status: string) {
+  constructor(
+    role: string,
+    desc: string,
+    phone: number,
+    email: string,
+    password: string,
+    selecttype: string,
+    status: string
+  ) {
     this.role = role;
     this.desc = desc;
     this.phone = phone;
